@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.grey,
         body: SafeArea(
           child: MainPage(),
         ),
@@ -26,6 +26,36 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        Expanded(
+          child: Text(
+            'question',
+          ),
+        ),
+        Expanded(
+          child: FlatButton(
+            color: Colors.green,
+            onPressed: () {},
+            child: Text(
+              'True',
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+        ),
+        Expanded(
+          child: FlatButton(
+            color: Colors.red,
+            onPressed: () {},
+            child: Text(
+              'False',
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+        ),
+      ],
+    );
   }
 }
