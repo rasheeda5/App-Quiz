@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Colors.grey,
+        backgroundColor: Colors.grey.shade900,
         body: SafeArea(
           child: MainPage(),
         ),
@@ -26,36 +26,61 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
-        Expanded(
-          child: Text(
-            'question',
-          ),
-        ),
-        Expanded(
-          child: FlatButton(
-            color: Colors.green,
-            onPressed: () {},
-            child: Text(
-              'True',
-              style: TextStyle(color: Colors.white),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Expanded(
+            flex: 5,
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Center(
+                child: Text(
+                  'question',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 25.0,
+                  ),
+                ),
+              ),
             ),
           ),
-        ),
-        Expanded(
-          child: FlatButton(
-            color: Colors.red,
-            onPressed: () {},
-            child: Text(
-              'False',
-              style: TextStyle(color: Colors.white),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: FlatButton(
+                color: Colors.green,
+                onPressed: () {},
+                child: Text(
+                  'True',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20.0,
+                  ),
+                ),
+              ),
             ),
           ),
-        ),
-      ],
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: FlatButton(
+                color: Colors.red,
+                onPressed: () {},
+                child: Text(
+                  'False',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20.0,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
