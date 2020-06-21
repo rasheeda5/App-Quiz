@@ -79,6 +79,18 @@ class _MainPageState extends State<MainPage> {
               ),
             ),
           ),
+          Row(
+            children: <Widget>[
+              Icon(
+                Icons.check_circle,
+                color: Colors.green,
+              ),
+              Icon(
+                Icons.close,
+                color: Colors.red,
+              )
+            ],
+          ),
         ],
       ),
     );
