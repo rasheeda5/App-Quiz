@@ -24,6 +24,17 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  List<Widget> scoreKeeper = [];
+
+  void checkAnswer() {
+    scoreKeeper.add(
+      Icon(
+        Icons.check,
+        color: Colors.green,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -52,7 +63,7 @@ class _MainPageState extends State<MainPage> {
               padding: const EdgeInsets.all(16.0),
               child: FlatButton(
                 color: Colors.green,
-                onPressed: () {},
+                onPressed: checkAnswer,
                 child: Text(
                   'True',
                   style: TextStyle(
@@ -65,10 +76,10 @@ class _MainPageState extends State<MainPage> {
           ),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(15.0),
               child: FlatButton(
                 color: Colors.red,
-                onPressed: () {},
+                onPressed: checkAnswer,
                 child: Text(
                   'False',
                   style: TextStyle(
@@ -80,16 +91,7 @@ class _MainPageState extends State<MainPage> {
             ),
           ),
           Row(
-            children: <Widget>[
-              Icon(
-                Icons.check_circle,
-                color: Colors.green,
-              ),
-              Icon(
-                Icons.close,
-                color: Colors.red,
-              )
-            ],
+            children: scoreKeeper,
           ),
         ],
       ),
