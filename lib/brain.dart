@@ -1,10 +1,9 @@
 import 'question.dart';
 
 class Brain {
+  int _counter = 0;
+
   List<Question> _questionBank = [
-    Question('You can lead a cow downstairs, but not up.', false),
-    Question('Approximately one quarter of human bones are in the feet.', true),
-    Question('A slug\'s blood is green.', true),
     Question('Some cats are actually allergic to humans', true),
     Question('You can lead a cow down stairs but not up stairs.', false),
     Question('Approximately one quarter of human bones are in the feet.', true),
@@ -32,11 +31,21 @@ class Brain {
         true),
   ];
 
-  String getQuestion(int index) {
-    return _questionBank[index].question;
+  String getQuestion() {
+    return _questionBank[_counter].question;
   }
 
-  bool getAnswer(int index) {
-    return _questionBank[index].answer;
+  bool getAnswer() {
+    return _questionBank[_counter].answer;
+  }
+
+  int getCounter() {
+    return _counter;
+  }
+
+  void incrementCounter() {
+    if (_counter < (_questionBank.length - 1)) {
+      _counter++;
+    } else {}
   }
 }

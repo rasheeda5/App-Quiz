@@ -30,16 +30,14 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   List<Widget> scoreKeeper = [];
 
-  int counter = 0;
-
   checkAnswer(bool answer) {
-    if (quizBrain.getAnswer(counter) == answer) {
+    if (quizBrain.getAnswer() == answer) {
       print('correct!');
     } else {
       print('incorrect!');
     }
     setState(() {
-      counter++;
+      quizBrain.incrementCounter();
     });
   }
 
@@ -57,7 +55,7 @@ class _MainPageState extends State<MainPage> {
               padding: const EdgeInsets.all(10.0),
               child: Center(
                 child: Text(
-                  quizBrain.getQuestion(counter),
+                  quizBrain.getQuestion(),
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.white,
@@ -73,13 +71,13 @@ class _MainPageState extends State<MainPage> {
               child: FlatButton(
                 color: Colors.green,
                 onPressed: () {
-                  if (quizBrain.getAnswer(counter) == true) {
+                  if (quizBrain.getAnswer() == true) {
                     print('correct!');
                   } else {
                     print('incorrect!');
                   }
                   setState(() {
-                    counter++;
+                    quizBrain.incrementCounter();
                   });
                 },
                 child: Text(
@@ -98,13 +96,13 @@ class _MainPageState extends State<MainPage> {
               child: FlatButton(
                 color: Colors.red,
                 onPressed: () {
-                  if (quizBrain.getAnswer(counter) == false) {
+                  if (quizBrain.getAnswer() == false) {
                     print('correct!');
                   } else {
                     print('incorrect!');
                   }
                   setState(() {
-                    counter++;
+                    quizBrain.incrementCounter();
                   });
                 },
                 child: Text(
