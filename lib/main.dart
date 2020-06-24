@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 
+import 'brain.dart';
+
 void main() {
   runApp(MyApp());
 }
+
+Brain quizBrain = Brain();
 
 class MyApp extends StatelessWidget {
   @override
@@ -26,41 +30,16 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   List<Widget> scoreKeeper = [];
 
-  List<Questions> listQuestions = [];
-  List<String> questions = [
-    'You can lead a cow downstairs, but not up.',
-    'Approximately one quarter of human bones are in the feet.',
-    'A slug\'s blood is green.',
-  ];
-
-  List<bool> answers = [
-    false,
-    true,
-    true,
-  ];
-
   int counter = 0;
 
   checkAnswer(bool answer) {
+    if (quizBrain.getAnswer(counter) == answer) {
+      print('correct!');
+    } else {
+      print('incorrect!');
+    }
     setState(() {
-      if (answers[counter] == answer) {
-        scoreKeeper.add(
-          Icon(
-            Icons.check,
-            color: Colors.green,
-          ),
-        );
-      } else {
-        scoreKeeper.add(
-          Icon(
-            Icons.clear,
-            color: Colors.red,
-          ),
-        );
-      }
-      if (counter < 2) {
-        counter++;
-      }
+      counter++;
     });
   }
 
@@ -78,7 +57,7 @@ class _MainPageState extends State<MainPage> {
               padding: const EdgeInsets.all(10.0),
               child: Center(
                 child: Text(
-                  questions[counter],
+                  quizBrain.getQuestion(counter),
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.white,
@@ -93,7 +72,16 @@ class _MainPageState extends State<MainPage> {
               padding: const EdgeInsets.all(16.0),
               child: FlatButton(
                 color: Colors.green,
-                onPressed: checkAnswer(true),
+                onPressed: () {
+                  if (quizBrain.getAnswer(counter) == true) {
+                    print('correct!');
+                  } else {
+                    print('incorrect!');
+                  }
+                  setState(() {
+                    counter++;
+                  });
+                },
                 child: Text(
                   'True',
                   style: TextStyle(
@@ -109,7 +97,16 @@ class _MainPageState extends State<MainPage> {
               padding: const EdgeInsets.all(15.0),
               child: FlatButton(
                 color: Colors.red,
-                onPressed: checkAnswer(false),
+                onPressed: () {
+                  if (quizBrain.getAnswer(counter) == false) {
+                    print('correct!');
+                  } else {
+                    print('incorrect!');
+                  }
+                  setState(() {
+                    counter++;
+                  });
+                },
                 child: Text(
                   'False',
                   style: TextStyle(
@@ -127,9 +124,4 @@ class _MainPageState extends State<MainPage> {
       ),
     );
   }
-}
-
-class Questions {
-  String question;
-  bool answer;
 }
