@@ -26,13 +26,42 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   List<Widget> scoreKeeper = [];
 
-  void checkAnswer() {
-    scoreKeeper.add(
-      Icon(
-        Icons.check,
-        color: Colors.green,
-      ),
-    );
+  List<Questions> listQuestions = [];
+  List<String> questions = [
+    'You can lead a cow downstairs, but not up.',
+    'Approximately one quarter of human bones are in the feet.',
+    'A slug\'s blood is green.',
+  ];
+
+  List<bool> answers = [
+    false,
+    true,
+    true,
+  ];
+
+  int counter = 0;
+
+  checkAnswer(bool answer) {
+    setState(() {
+      if (answers[counter] == answer) {
+        scoreKeeper.add(
+          Icon(
+            Icons.check,
+            color: Colors.green,
+          ),
+        );
+      } else {
+        scoreKeeper.add(
+          Icon(
+            Icons.clear,
+            color: Colors.red,
+          ),
+        );
+      }
+      if (counter < 2) {
+        counter++;
+      }
+    });
   }
 
   @override
@@ -49,7 +78,8 @@ class _MainPageState extends State<MainPage> {
               padding: const EdgeInsets.all(10.0),
               child: Center(
                 child: Text(
-                  'question',
+                  questions[counter],
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 25.0,
@@ -63,7 +93,7 @@ class _MainPageState extends State<MainPage> {
               padding: const EdgeInsets.all(16.0),
               child: FlatButton(
                 color: Colors.green,
-                onPressed: checkAnswer,
+                onPressed: checkAnswer(true),
                 child: Text(
                   'True',
                   style: TextStyle(
@@ -79,7 +109,7 @@ class _MainPageState extends State<MainPage> {
               padding: const EdgeInsets.all(15.0),
               child: FlatButton(
                 color: Colors.red,
-                onPressed: checkAnswer,
+                onPressed: checkAnswer(false),
                 child: Text(
                   'False',
                   style: TextStyle(
@@ -97,4 +127,9 @@ class _MainPageState extends State<MainPage> {
       ),
     );
   }
+}
+
+class Questions {
+  String question;
+  bool answer;
 }
