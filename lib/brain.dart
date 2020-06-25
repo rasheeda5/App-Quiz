@@ -39,13 +39,20 @@ class Brain {
     return _questionBank[_counter].answer;
   }
 
-  int getCounter() {
-    return _counter;
-  }
-
   void incrementCounter() {
     if (_counter < (_questionBank.length - 1)) {
       _counter++;
-    } else {}
+    }
+  }
+
+  bool isFinished() {
+    if (_counter >= (_questionBank.length - 1)) {
+      return true;
+    } else
+      return false;
+  }
+
+  void resetCounter() {
+    _counter = 0;
   }
 }

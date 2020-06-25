@@ -31,13 +31,28 @@ class _MainPageState extends State<MainPage> {
   List<Widget> scoreKeeper = [];
 
   checkAnswer(bool answer) {
-    if (quizBrain.getAnswer() == answer) {
-      print('correct!');
-    } else {
-      print('incorrect!');
-    }
     setState(() {
-      quizBrain.incrementCounter();
+      if (quizBrain.isFinished()) {
+      } else {
+        if (quizBrain.getAnswer() == answer) {
+          print('correct!');
+          scoreKeeper.add(
+            Icon(
+              Icons.check,
+              color: Colors.green,
+            ),
+          );
+        } else {
+          print('incorrect!');
+          scoreKeeper.add(
+            Icon(
+              Icons.close,
+              color: Colors.red,
+            ),
+          );
+        }
+        quizBrain.incrementCounter();
+      }
     });
   }
 
@@ -71,14 +86,7 @@ class _MainPageState extends State<MainPage> {
               child: FlatButton(
                 color: Colors.green,
                 onPressed: () {
-                  if (quizBrain.getAnswer() == true) {
-                    print('correct!');
-                  } else {
-                    print('incorrect!');
-                  }
-                  setState(() {
-                    quizBrain.incrementCounter();
-                  });
+                  checkAnswer(true);
                 },
                 child: Text(
                   'True',
@@ -96,14 +104,7 @@ class _MainPageState extends State<MainPage> {
               child: FlatButton(
                 color: Colors.red,
                 onPressed: () {
-                  if (quizBrain.getAnswer() == false) {
-                    print('correct!');
-                  } else {
-                    print('incorrect!');
-                  }
-                  setState(() {
-                    quizBrain.incrementCounter();
-                  });
+                  checkAnswer(false);
                 },
                 child: Text(
                   'False',
