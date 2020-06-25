@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 import 'brain.dart';
 
@@ -33,6 +34,26 @@ class _MainPageState extends State<MainPage> {
   checkAnswer(bool answer) {
     setState(() {
       if (quizBrain.isFinished()) {
+        Alert(
+          context: context,
+          type: AlertType.error,
+          title: 'Game Over!',
+          desc: 'The questions have ended. Click the button to reset.',
+          buttons: [
+            DialogButton(
+              child: Text(
+                "Reset",
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+                quizBrain.resetCounter();
+                scoreKeeper = [];
+              },
+              width: 120,
+            )
+          ],
+        ).show();
       } else {
         if (quizBrain.getAnswer() == answer) {
           print('correct!');
